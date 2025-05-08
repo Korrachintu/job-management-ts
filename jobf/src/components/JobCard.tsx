@@ -1,7 +1,7 @@
 'use client';
 
 import { Card, Text, Group, Badge, Avatar, Stack } from '@mantine/core';
-import { IconMapPin, IconBriefcase, IconCurrencyRupee, IconClock } from '@tabler/icons-react';
+import { IconMapPin, IconBriefcase, IconCurrencyRupee } from '@tabler/icons-react';
 import { Job } from '../types/Job';
 
 export const JobCard = ({ job }: { job: Job }) => (
