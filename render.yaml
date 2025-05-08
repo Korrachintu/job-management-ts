@@ -1,0 +1,24 @@
+services:
+  - type: web
+    name: job-backend
+    env: docker
+    repo: https://github.com/Korrachintu/job-management-ts
+    branch: main
+    rootDir: job-back
+    plan: free
+    autoDeploy: true
+    envVars:
+      - key: DATABASE_URL
+        value: postgresql://jobdb_me7l_user:HV6v3Qk81xgsrZQwehYHH3lqCFLwWXxH@dpg-d0ea7m0dl3ps73bhe9p0-a/jobdb_me7l
+
+  - type: web
+    name: job-frontend
+    env: docker
+    repo: https://github.com/Korrachintu/job-management-ts
+    branch: main
+    rootDir: jobf
+    plan: free
+    autoDeploy: true
+    envVars:
+      - key: NEXT_PUBLIC_API_URL
+        value: https://job-backend.onrender.com
