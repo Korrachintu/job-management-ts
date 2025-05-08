@@ -7,11 +7,11 @@ import { Job } from './jobs/job.entity';
   imports: [
     TypeOrmModule.forRoot({
       type: 'postgres',
-      host: 'localhost',
+      host: process.env.DB_HOST || 'postgres',
       port: 5432,
-      username: 'postgres',
-      password: 'mysecretpassword',
-      database: 'jobdb',
+      username: process.env.POSTGRES_USER || 'postgres',
+      password: process.env.POSTGRES_PASSWORD || 'mysecretpassword',
+      database: process.env.POSTGRES_DB || 'jobdb',
       entities: [Job],
       synchronize: true,
     }),
