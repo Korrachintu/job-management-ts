@@ -6,7 +6,7 @@ import { Job } from './jobs/job.entity';
 @Module({
   imports: [
     TypeOrmModule.forRoot({
-      type: 'postgres',
+      type: 'localhost',
       host: process.env.DB_HOST || 'postgres',
       port: 5432,
       username: process.env.POSTGRES_USER || 'postgres',
