@@ -21,6 +21,13 @@ import { Job } from './jobs/job.entity';
         database: configService.get<string>('DB_NAME', 'jobdb'),
         entities: [Job],
         synchronize: true,
+        ssl: true,
+        extra: {
+          ssl: {
+            rejectUnauthorized: false,
+          },
+        },
+
       }),
       
     }),
