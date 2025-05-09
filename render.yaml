@@ -10,7 +10,10 @@ services:
     envVars:
       - key: DATABASE_URL
         # value: postgresql://jobdb_me7l_user:HV6v3Qk81xgsrZQwehYHH3lqCFLwWXxH@dpg-d0ea7m0dl3ps73bhe9p0-a/jobdb_me7l
-        value:postgresql://jobdb_me7l_user:HV6v3Qk81xgsrZQwehYHH3lqCFLwWXxH@dpg-d0ea7m0dl3ps73bhe9p0-a.oregon-postgres.render.com/jobdb_me7l
+        value: postgresql://jobdb_me7l_user:HV6v3Qk81xgsrZQwehYHH3lqCFLwWXxH@dpg-d0ea7m0dl3ps73bhe9p0-a.oregon-postgres.render.com/jobdb_me7l
+      - key: NODE_VERSION
+        value: 20
+        
   - type: web
     name: job-frontend
     env: docker
