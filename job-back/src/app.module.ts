@@ -1,19 +1,28 @@
 import { Module } from '@nestjs/common';
+import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { JobsModule } from './jobs/jobs.module';
 import { Job } from './jobs/job.entity';
 
 @Module({
   imports: [
-    TypeOrmModule.forRoot({
-      type: 'postgres',
-      host: process.env.DB_HOST || 'postgres',
-      port: 5432,
-      username: process.env.POSTGRES_USER || 'postgres',
-      password: process.env.POSTGRES_PASSWORD || 'mysecretpassword',
-      database: process.env.POSTGRES_DB || 'jobdb',
-      entities: [Job],
-      synchronize: true,
+    ConfigModule.forRoot({
+      isGlobal: true, // makes config available app-wide
+    }),
+    TypeOrmModule.forRootAsync({
+      imports: [ConfigModule],
+      inject: [ConfigService],
+      useFactory: (configService: ConfigService) => ({
+        type: 'postgres',
+        host: configService.get<string>('DB_HOST', 'localhost'),
+        port: parseInt(configService.get<string>('DB_PORT', '5432')),
+        username: configService.get<string>('DB_USERNAME', 'postgres'),
+        password: configService.get<string>('DB_PASSWORD', 'mysecretpassword'),
+        database: configService.get<string>('DB_NAME', 'jobdb'),
+        entities: [Job],
+        synchronize: true,
+      }),
+      
     }),
     JobsModule,
   ],
